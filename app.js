@@ -22,8 +22,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
+
+
+app.use('/', index); // /로 들어왔을때는 이게 처리하는데 여기에서 response를 해줄 수 있다. 
+app.use('/users', users); //동일 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
