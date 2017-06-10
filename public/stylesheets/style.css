@@ -11,11 +11,11 @@ body {
   
 }
 
-.container {
-}
-
-
 #navigator{
   margin:10px;
   float:right;
+}
+
+.social {
+  width:100px;
 }

@@ -1,11 +1,16 @@
-
 <input type="text" name="email"/>
 <input type="password" name="password"/>
 <button>로그인</button>
-
-<a href="/">카카오톡</a>
-<a href="/">구글</a>
-<a href="/">페이스북</a>
+<a href="#" id="custom-login-btn" data-social="kakao" data-func="login" data-action="mousedown" class="social">
+<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300px"/>
+</a>
+<a href="/" data-social="google" data-func="login" class="social">구글</a>
+<a href="/" data-social="facebook" data-func="login" class="social">페이스북</a>
+<div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
 <a href="/">깃허브</a>
-<a href="/">카카오톡</a>
 <a href="/">네이버</a>
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="/javascripts/socialService.js"></script>
+<script src="/javascripts/login.js"></script>
+
