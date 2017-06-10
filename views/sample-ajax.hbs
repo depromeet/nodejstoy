@@ -4,6 +4,10 @@
 <div id="demo">
 
 </div>
+<button id="request-ajax-user-list">User-list Ajax</button>
+<div id="user-list">
+
+</div>
 
 <script>
   document.getElementById("request-ajax").addEventListener("click", function(){
@@ -14,4 +18,23 @@
            }
     });
   });
+  // document.getElementById("request-ajax-user-list").addEventListener("click", function(){
+    $.ajax({
+      url:'/users/list',
+           success:function(data){
+             var ret ="";
+             for(var i in data)
+              {
+                   var id = data[i].id;
+                  ret+=id+":";
+
+                   var name = data[i].name;
+                  //  console.log(name);
+                  ret+=name+"<br/>";
+              }
+
+             document.getElementById("user-list").innerHTML = ret;
+           }
+    });
+  // });
 </script>
