@@ -22,9 +22,8 @@
   $(document).ready(function(){
     document.getElementById("request-ajax-user-list").addEventListener("click", (function(){
       var appendDiv = document.getElementById("user-list"),
-          source = $("#users-template").html();
-          console.log(source);
-          var template = Handlebars.compile(source); 
+          source = $("#users-template").html(),
+          template = Handlebars.compile(source); 
 
       return function(e){
         $.ajax({
