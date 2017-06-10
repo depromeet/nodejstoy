@@ -18,23 +18,42 @@
            }
     });
   });
-  // document.getElementById("request-ajax-user-list").addEventListener("click", function(){
-    $.ajax({
-      url:'/users/list',
-           success:function(data){
-             var ret ="";
-             for(var i in data)
-              {
-                   var id = data[i].id;
-                  ret+=id+":";
 
-                   var name = data[i].name;
-                  //  console.log(name);
-                  ret+=name+"<br/>";
+  $(document).ready(function(){
+    document.getElementById("request-ajax-user-list").addEventListener("click", (function(){
+      var appendDiv = document.getElementById("user-list"),
+          source = $("#users-template").html();
+          console.log(source);
+          var template = Handlebars.compile(source); 
+
+      return function(e){
+        $.ajax({
+          url:'/users/list',
+              success:function(data){
+                //핸들바 템플릿 컴파일
+                appendDiv.innerHTML = template(data);
               }
+        });
+      }
+    }()));
+  })
+  
+  
+</script>
 
-             document.getElementById("user-list").innerHTML = ret;
-           }
-    });
-  // });
+<script id="users-template" type="text/x-handlebars-template">
+<table>
+    <thead> 
+        <th>ID</th> 
+        <th>이름</th> 
+    </thead> 
+    <tbody> 
+      \{{#each this}}
+          <tr>
+          <td class="row">\{{id}}</td>
+          <td class="row">\{{name}}</td>
+          </tr>
+      \{{/each}}
+    </tbody> 
+</table>
 </script>
