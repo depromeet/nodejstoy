@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var sampleAjax = require('./routes/sample-ajax');
 
 var app = express();
 
@@ -17,15 +18,17 @@ app.set('view engine', 'hbs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());//body 데이터를 파싱한다. 
+app.use(bodyParser.json());//body 데이터를 파싱한다.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-app.use('/', index); // /로 들어왔을때는 이게 처리하는데 여기에서 response를 해줄 수 있다. 
-app.use('/users', users); //동일 
+app.use('/', index); // /로 들어왔을때는 이게 처리하는데 여기에서 response를 해줄 수 있다.
+app.use('/users', users); //동일
+app.use('/sample-ajax', sampleAjax); //동일
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

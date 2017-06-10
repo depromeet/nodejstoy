@@ -1,0 +1,17 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+<button id="request-ajax">Request Ajax</button>
+<div id="demo">
+
+</div>
+
+<script>
+  document.getElementById("request-ajax").addEventListener("click", function(){
+    $.ajax({
+      url:'/sample-ajax/return',
+           success:function(data){
+             document.getElementById("demo").innerHTML = data;
+           }
+    });
+  });
+</script>
