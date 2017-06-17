@@ -1,15 +1,15 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express      = require('express');
+const path         = require('path');
+const favicon      = require('serve-favicon');
+const logger       = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser   = require('body-parser');
+                    //프로젝트 toy
+const index        = require('./toy/index');//폴더명까지만 적음..
+const users        = require('./toy/user');
+const sample       = require('./toy/sample');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var sampleAjax = require('./routes/sample-ajax');
-
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,16 +23,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
-app.use('/', index); // /로 들어왔을때는 이게 처리하는데 여기에서 response를 해줄 수 있다.
-app.use('/users', users); //동일
-app.use('/sample-ajax', sampleAjax); //동일
+app.use('/'      , index); // /로 들어왔을때는 이게 처리하는데 여기에서 response를 해줄 수 있다.
+app.use('/users' , users);
+app.use('/sample', sample);
 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });

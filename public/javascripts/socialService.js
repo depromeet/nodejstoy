@@ -10,7 +10,7 @@
 
         var els = options.el || document.getElementsByClassName("social"), 
             el,
-            len,
+            len=0,
             i=0,
             
                         //options 명 변경 
@@ -20,10 +20,10 @@
             socialName,
             socialApi,
             action; // default
-        
-        els = els.length ? els : [els];
+            
+        els = els.length ? els : [els]; // el -> arr
         len = els.length;
-
+        
         for(;i<len;i++){
             el = els[i]; //els Array -> el 
             socialName = el.dataset[customOpt];
@@ -38,14 +38,16 @@
         }
     }
                                                           //alert , "구글로 로그인"
-    socialService.addService = function(socialName, apiName, func){
+    socialService.addService = function(socialName, apiName, func /*, rest */){
         //array like 
+        
         var args = arguments,
             action = function(e){
-            e.preventDefault();
-            //rest 나머지 파라미터는 func를 호출 시키기 위해서 사용하는 파라미터 
-            func.apply(null, Array.prototype.slice.call(args, 3));
-        }
+              e.preventDefault(); //기존에 동작하던 이벤트를 취소 시킨다. 
+              
+              //rest 나머지 파라미터는 func를 호출 시키기 위해서 사용하는 파라미터 
+              func.apply(null, /* rest */Array.prototype.slice.call(args, 3));
+            }
 
         socialService[socialName] = socialService[socialName] || {};
         socialService[socialName][apiName] = action;
