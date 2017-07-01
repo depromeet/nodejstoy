@@ -8,6 +8,7 @@ const bodyParser   = require('body-parser');
 const index        = require('./toy/index');//폴더명까지만 적음..
 const users        = require('./toy/user');
 const sample       = require('./toy/sample');
+const chat         = require('./toy/chat');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/'      , index); // /로 들어왔을때는 이게 처리하는데 여기에서 response를 해줄 수 있다.
 app.use('/users' , users);
 app.use('/sample', sample);
+app.use('/chat'  , chat);
 
 
 // catch 404 and forward to error handler
